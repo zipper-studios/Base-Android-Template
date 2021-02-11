@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="match_constraint">0dp</dimen>
+
+    <!-- Spacing -->
+    <dimen name="spacing_eight">8dp</dimen>
+
+    <!-- Font sizes -->
+    <dimen name="font_size_fourteen">14sp</dimen>
+    <dimen name="font_size_sixteen">16sp</dimen>
+</resources>
