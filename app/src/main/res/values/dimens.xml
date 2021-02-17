@@ -5,6 +5,7 @@
 
     <!-- Spacing -->
     <dimen name="spacing_eight">8dp</dimen>
+    <dimen name="spacing_sixteen">16dp</dimen>
 
     <!-- Font sizes -->
     <dimen name="font_size_fourteen">14sp</dimen>

@@ -18,6 +18,8 @@
             android:layout_height="@dimen/match_constraint"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/spacing_sixteen"
             app:layout_constraintEnd_toEndOf="parent"
             app:adapter="@{viewModel.githubUsersListAdapter}"
             app:layout_constraintStart_toStartOf="parent"
