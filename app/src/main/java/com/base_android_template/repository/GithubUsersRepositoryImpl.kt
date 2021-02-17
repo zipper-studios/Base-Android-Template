@@ -1,7 +1,7 @@
 package com.base_android_template.repository
 
 import com.base_android_template.api.GithubUsersApi
-import com.base_android_template.model.GithubUserModel
+import com.base_android_template.model.response.GithubUserResponse
 import com.base_android_template.shared.network.ApiResponse
 
 class GithubUsersRepositoryImpl(
@@ -9,5 +9,5 @@ class GithubUsersRepositoryImpl(
 ) :
     GithubUsersRepository {
 
-    override suspend fun getGithubUsers(): ApiResponse<List<GithubUserModel>, Error> = githubUsersApi.getGithubUsers()
+    override suspend fun getGithubUsers(): ApiResponse<List<GithubUserResponse>, Error> = githubUsersApi.getGithubUsers()
 }

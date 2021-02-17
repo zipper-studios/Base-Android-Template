@@ -10,6 +10,8 @@ class GithubUsersViewModel(
 ) :
     BaseViewModel() {
 
+    val githubUsersListAdapter = GithubUsersListAdapter()
+
     init {
         getGithubUsers()
     }
@@ -17,6 +19,7 @@ class GithubUsersViewModel(
     private fun getGithubUsers() {
         viewModelScope.launch {
             getGithubUsersUseCase().fold({
+               githubUsersListAdapter.submitList(it)
             }, {
             })
         }
