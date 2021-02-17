@@ -4,5 +4,5 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val githubUsersModule = module {
-    viewModel { GithubUsersViewModel(githubUsersRepository = get()) }
+    viewModel { GithubUsersViewModel(getGithubUsersUseCase = get()) }
 }

@@ -32,4 +32,4 @@ val coreModules = module {
     }
 }
 
-fun createCoreModules() = coreModules + apiModule + repositoryModule
+fun createCoreModules() = coreModules + apiModule + repositoryModule + useCaseModule
