@@ -19,3 +19,20 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+#-------------------------------------------------
+# JetPack Navigation
+# This fixes:
+# Caused by: androidx.fragment.app.Fragment$InstantiationException: Unable to instantiate fragment androidx.navigation.fragment.NavHostFragment: make sure class name exists
+# Caused by: androidx.fragment.app.Fragment$InstantiationException: Unable to instantiate fragment androidx.fragment.app.Fragment: make sure class name exists
+#-------------------------------------------------
+
+-keep class androidx.navigation.fragment.NavHostFragment
+-keep class * extends androidx.fragment.app.Fragment{}
+
+#-------------------------------------------------
+# Hawk
+# This fixes:
+# Caused by: java.lang.AssertionError: illegal type variable reference only happend on Android N or higher versions
+#-------------------------------------------------
+-keep class com.orhanobut.hawk.** { *; }
