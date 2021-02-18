@@ -41,6 +41,7 @@
                     android:layout_height="wrap_content"
                     android:text="@{item.login}"
                     android:padding="@dimen/spacing_sixteen"
+                    android:fontFamily="@font/lato_bold"
                     android:textSize="@dimen/font_size_sixteen"
                     android:textColor="@color/black"
                     tools:text="Github User"
