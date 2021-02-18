@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Base-Android-Template</string>
+    <string name="app_name" translatable="false">Base-Android-Template</string>
+
+    <string name="romanian_language">Romanian</string>
+    <string name="english_language">English</string>
+
+    <string name="github_users_list_description">Lists all users, in the order that they signed up on GitHub. This list includes personal user accounts and organization accounts.</string>
 </resources>

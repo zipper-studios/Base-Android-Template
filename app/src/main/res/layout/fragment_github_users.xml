@@ -12,6 +12,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="wrap_content"
+            android:id="@+id/github_users_description_text"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/github_users_list_description"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_sixteen"
+            android:fontFamily="@font/lato_regular"
+            android:padding="@dimen/spacing_sixteen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/github_users_recycler_view"
             android:layout_width="@dimen/match_constraint"
@@ -23,7 +36,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:adapter="@{viewModel.githubUsersListAdapter}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/github_users_description_text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
