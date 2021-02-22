@@ -1,7 +1,7 @@
 package com.base_android_template.feature.github_users
 
 import androidx.lifecycle.viewModelScope
-import com.base_android_template.GetGithubUsersUseCase
+import com.base_android_template.usecase.GetGithubUsersUseCase
 import com.base_android_template.base.BaseViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber

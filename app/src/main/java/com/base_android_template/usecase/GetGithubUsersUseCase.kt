@@ -1,4 +1,4 @@
-package com.base_android_template
+package com.base_android_template.usecase
 
 import com.base_android_template.model.response.GithubUserResponse
 import com.base_android_template.repository.GithubUsersRepository

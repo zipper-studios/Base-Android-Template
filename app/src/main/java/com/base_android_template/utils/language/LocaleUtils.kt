@@ -6,10 +6,19 @@ import android.content.res.Resources
 import android.view.ContextThemeWrapper
 import java.util.Locale
 
+/*
+ * Utility class to change app locale settings.
+ */
+
 object LocaleUtils {
 
     var currentLocale: Locale? = null
 
+    /**
+     * Set the new locale
+     *
+     * @param locale Locale. The new locale with the format en_EN, de_DE, ro_RO, etc
+     */
     fun setLocale(locale: Locale?) {
         currentLocale = locale
         currentLocale?.let {
@@ -17,6 +26,12 @@ object LocaleUtils {
         }
     }
 
+    /**
+     * Update the configuration base on currentLocale.
+     * Used for activities
+     *
+     * @param wrapper ContextThemeWrapper. The activity ContextWrapper
+     */
     fun updateConfig(wrapper: ContextThemeWrapper) {
         if (currentLocale != null) {
             val configuration = Configuration()
@@ -25,6 +40,14 @@ object LocaleUtils {
         }
     }
 
+    /**
+     * Update the configuration base on currentLocale.
+     * Used for application
+     *
+     * @param app Application. The application instance
+     * @param configuration Configuration. The new configuration from `onConfigurationChanged` or the
+     * existing configuration when initialize the app
+     */
     fun updateConfig(app: Application, configuration: Configuration?) {
         if (currentLocale != null) {
             val config = Configuration(configuration)

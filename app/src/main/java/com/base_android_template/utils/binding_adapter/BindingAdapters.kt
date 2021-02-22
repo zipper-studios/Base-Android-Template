@@ -1,4 +1,4 @@
-package com.base_android_template.utils
+package com.base_android_template.utils.binding_adapter
 
 import android.widget.ImageView
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
