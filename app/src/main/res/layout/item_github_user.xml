@@ -32,7 +32,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:loadImage="@{item.avatar_url}"
+                    app:loadImage="@{item.avatarUrl}"
                     tools:src="@drawable/bg_gray_rounded" />
 
                 <TextView
