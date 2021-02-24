@@ -1,7 +1,13 @@
 package com.base_android_template.model.response
 
+import androidx.room.Entity
+import androidx.room.Index
 import com.google.gson.annotations.SerializedName
 
+@Entity(
+    primaryKeys = ["id"],
+    indices = [Index("id")]
+)
 data class GithubUserResponse(
     @field:SerializedName("login")
     val login: String,
