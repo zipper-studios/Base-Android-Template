@@ -3,6 +3,7 @@ package com.base_android_template
 import android.app.Application
 import android.content.res.Configuration
 import com.base_android_template.di.createCoreModules
+import com.base_android_template.feature.favorite_users.favoriteGithubUsersModule
 import com.base_android_template.feature.github_users.githubUsersModule
 import com.base_android_template.shared.Locales
 import com.base_android_template.utils.language.LocaleUtils
@@ -42,7 +43,7 @@ class App : Application() {
     }
 
     private fun getAppModules() = createCoreModules() +
-            githubUsersModule
+            githubUsersModule + favoriteGithubUsersModule
 
     private fun initCalligraphy() {
         ViewPump.init(

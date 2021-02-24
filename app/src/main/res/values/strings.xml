@@ -4,5 +4,7 @@
     <string name="romanian_language">Romanian</string>
     <string name="english_language">English</string>
 
+    <string name="users">Users</string>
+    <string name="favorites">Favorites</string>
     <string name="github_users_list_description">Lists all users, in the order that they signed up on GitHub. This list includes personal user accounts and organization accounts.</string>
 </resources>

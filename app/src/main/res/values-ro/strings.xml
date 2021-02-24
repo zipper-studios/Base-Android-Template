@@ -2,5 +2,7 @@
     <string name="romanian_language">Romana</string>
     <string name="english_language">Engleza</string>
 
+    <string name="users">Useri</string>
+    <string name="favorites">Favoriti</string>
     <string name="github_users_list_description">Lista cu toti utilizatorii Github, in ordinea in care s-au inregistrat pe GitHub. Aceasta lista include conturi personale de utilizator si conturi de organizatie.</string>
 </resources>
