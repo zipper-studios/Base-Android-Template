@@ -1,0 +1,54 @@
+package com.base_android_template.utils.binding_adapter
+
+import android.widget.ImageView
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
+import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.base_android_template.R
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
+
+/*
+ * Binding adapters are responsible for making the appropriate framework calls to set values for views directly inside layout.
+ */
+object BindingAdapters {
+
+    /**
+     * Set the adapter on RecyclerView
+     *
+     * @param recyclerView RecyclerView. The RecyclerView on which the adapter will be set
+     * @param adapter RecyclerView.Adapter<RecyclerView.ViewHolder>. The adapter instance from ViewModel that will be set on RecyclerView
+     */
+    @JvmStatic
+    @BindingAdapter("adapter")
+    fun setAdapter(
+        recyclerView: RecyclerView,
+        adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
+    ) {
+        recyclerView.adapter = adapter
+    }
+
+    /**
+     * Load image url ito ImageView using Glide
+     *
+     * @param imageView ImageView. The ImageView that will display the image
+     * @param imageUrl String?. The url of the image that will be displayed
+     */
+    @BindingAdapter("app:loadImage")
+    @JvmStatic
+    fun bindLoadImageMethod(imageView: ImageView, imageUrl: String?) {
+        val options = RequestOptions()
+            .centerCrop()
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .dontAnimate()
+
+        Glide.with(imageView.context)
+            .asBitmap()
+            .placeholder(getDrawable(imageView.context, R.drawable.bg_gray_rounded))
+            .error(getDrawable(imageView.context, R.drawable.bg_gray_rounded))
+            .load(imageUrl ?: "")
+            .apply(options)
+            .into(imageView)
+    }
+}
