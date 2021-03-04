@@ -1,10 +1,11 @@
-package com.base_android_template.repository
+package com.base_android_template.remote
 
 import com.base_android_template.model.response.GithubUserResponse
 import com.base_android_template.utils.Either
 import com.base_android_template.shared.network.Exception
 
-interface GithubUsersRepository {
+interface GithubUsersListRemote {
 
-    suspend fun getLocalGithubUsers(): Either<Exception, List<GithubUserResponse>>
+    suspend fun getGithubUsersList(): Either<Exception, List<GithubUserResponse>>
+
 }

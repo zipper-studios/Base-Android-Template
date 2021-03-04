@@ -14,19 +14,35 @@ class GithubUsersViewModel(
     val githubUsersListAdapter = GithubUsersListAdapter()
 
     init {
-        getGithubUsers()
+        getLocalCartItems()
     }
 
-    private fun getGithubUsers() {
+    private fun getLocalCartItems() {
         viewModelScope.launch {
-            getGithubUsersUseCase.getGithubUsers().fold({
-                githubUsersListAdapter.submitList(it)
-            }, {
-                Timber.d(
-                    GithubUsersViewModel::class.simpleName,
-                    "Error fetching Github users list"
-                )
-            })
+            getGithubUsersUseCase.getLocalGithubUsers().fold(
+                {
+                    getRemoteGithubUsers()
+                },
+                {
+                    githubUsersListAdapter.submitList(it)
+                }
+            )
+        }
+    }
+
+    private fun getRemoteGithubUsers() {
+        viewModelScope.launch {
+            getGithubUsersUseCase.getRemoteAndSaveLocalGithubUsers().fold(
+                {
+                    Timber.d(
+                        GithubUsersViewModel::class.simpleName,
+                        "Error fetching Github users list"
+                    )
+                },
+                {
+                    githubUsersListAdapter.submitList(it)
+                }
+            )
         }
     }
 }

@@ -1,13 +1,15 @@
 package com.base_android_template.repository
 
-import com.base_android_template.api.GithubUsersApi
 import com.base_android_template.model.response.GithubUserResponse
-import com.base_android_template.shared.network.ApiResponse
+import com.base_android_template.remote.GithubUsersListRemote
+import com.base_android_template.utils.Either
+import com.base_android_template.shared.network.Exception
 
 class GithubUsersRepositoryImpl(
-    private val githubUsersApi: GithubUsersApi
+    private val githubUsersListRemote: GithubUsersListRemote
 ) :
     GithubUsersRepository {
 
-    override suspend fun getGithubUsers(): ApiResponse<List<GithubUserResponse>, Error> = githubUsersApi.getGithubUsers()
+    override suspend fun getLocalGithubUsers(): Either<Exception, List<GithubUserResponse>> =
+        githubUsersListRemote.getGithubUsersList()
 }

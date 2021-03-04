@@ -5,5 +5,5 @@ import com.base_android_template.repository.GithubUsersRepositoryImpl
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    single<GithubUsersRepository> { GithubUsersRepositoryImpl(githubUsersApi = get()) }
+    single<GithubUsersRepository> { GithubUsersRepositoryImpl(githubUsersListRemote = get()) }
 }
