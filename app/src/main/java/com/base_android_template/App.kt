@@ -3,6 +3,7 @@ package com.base_android_template
 import android.app.Application
 import android.content.res.Configuration
 import com.base_android_template.di.getAppModules
+import com.base_android_template.shared.HawkKeys
 import com.base_android_template.shared.Locales
 import com.base_android_template.utils.language.LocaleUtils
 import com.orhanobut.hawk.Hawk
@@ -22,9 +23,9 @@ class App : Application() {
             modules(getAppModules())
         }
 
-        initLocale()
-
         Hawk.init(this).build()
+
+        initLocale()
 
         initCalligraphy()
     }
@@ -35,7 +36,7 @@ class App : Application() {
     }
 
     private fun initLocale() {
-        val locale = Locale(Locales.ENGLISH)
+        val locale = Locale(Hawk.get(HawkKeys.HAWK_PREF_LOCALE, Locales.ENGLISH))
         LocaleUtils.setLocale(locale)
         LocaleUtils.updateConfig(this, baseContext.resources.configuration)
     }

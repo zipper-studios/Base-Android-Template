@@ -2,6 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.base_android_template.feature.settings.SettingsViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,13 +46,15 @@
                     android:spinnerMode="dropdown"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/language_text"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:setRadioGroupListener="@{viewModel.languageRadioGroupListener}">
 
                     <RadioButton
                         android:id="@+id/english_radio_button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:buttonTint="@color/blue_700"
+                        android:checked="@{viewModel.settingsForm.fields.englishChecked}"
                         android:drawableEnd="@drawable/ic_english"
                         android:drawablePadding="@dimen/spacing_eight"
                         android:text="@string/english_language" />
@@ -53,8 +62,9 @@
                     <RadioButton
                         android:id="@+id/romanian_radio_button"
                         android:layout_width="match_parent"
-                        android:buttonTint="@color/blue_700"
                         android:layout_height="wrap_content"
+                        android:buttonTint="@color/blue_700"
+                        android:checked="@{!viewModel.settingsForm.fields.englishChecked}"
                         android:drawableEnd="@drawable/ic_romanian"
                         android:drawablePadding="@dimen/spacing_eight"
                         android:text="@string/romanian_language" />

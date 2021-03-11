@@ -1,7 +1,6 @@
 package com.base_android_template.feature.settings
 
 import android.os.Bundle
-import android.view.View
 import com.base_android_template.R
 import com.base_android_template.base.BaseFragment
 import com.base_android_template.databinding.FragmentSettingsBinding
@@ -12,8 +11,14 @@ class SettingsFragment :
 
     override val viewModel: SettingsViewModel by viewModel()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        viewModel.recreateActivity.observe(viewLifecycleOwner, {
+            if (it) {
+                activity?.recreate()
+            }
+        })
     }
 
 }

@@ -1,6 +1,7 @@
 package com.base_android_template.utils.binding_adapter
 
 import android.widget.ImageView
+import android.widget.RadioGroup
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -50,5 +51,22 @@ object BindingAdapters {
             .load(imageUrl ?: "")
             .apply(options)
             .into(imageView)
+    }
+
+    /**
+     * Set the RadioGroup.OnCheckedChangeListener on RadioGroup view
+     *
+     * @param radioGroup RadioGroup. The RadioGroup to which the OnCheckedChangeListener
+     * will be attached
+     * @param listener RadioGroup.OnCheckedChangeListener. The listener that will be
+     * invoked when the checked radio button changed in this group
+     */
+    @BindingAdapter("app:setRadioGroupListener")
+    @JvmStatic
+    fun setRadioGroupListener(
+        radioGroup: RadioGroup,
+        listener: RadioGroup.OnCheckedChangeListener
+    ) {
+        radioGroup.setOnCheckedChangeListener(listener)
     }
 }
