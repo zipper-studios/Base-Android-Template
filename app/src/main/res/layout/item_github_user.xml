@@ -45,20 +45,10 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/font_size_sixteen"
                     app:layout_constraintBottom_toBottomOf="@+id/github_user_avatar"
-                    app:layout_constraintEnd_toStartOf="@+id/favorite_user_button"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/github_user_avatar"
                     app:layout_constraintTop_toTopOf="@+id/github_user_avatar"
                     tools:text="Github User" />
-
-                <ImageView
-                    android:id="@+id/favorite_user_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/spacing_sixteen"
-                    android:src="@drawable/ic_favorite_24px"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -12,12 +12,12 @@
         tools:layout="@layout/fragment_github_users" >
         <action
             android:id="@+id/action_githubUsers_to_favoriteGithubUsers"
-            app:destination="@id/favoriteGithubUsers" />
+            app:destination="@id/settings" />
     </fragment>
 
     <fragment
-        android:id="@+id/favoriteGithubUsers"
-        android:name="com.base_android_template.feature.favorite_users.FavoriteGithubUsersFragment"
-        android:label="FavoriteGithubUsers" />
+        android:id="@+id/settings"
+        android:name="com.base_android_template.feature.settings.SettingsFragment"
+        android:label="SettingsFragment" />
 
 </navigation>

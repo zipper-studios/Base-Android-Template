@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/spacing_twenty_four">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_sixteen">
+
+                <TextView
+                    android:id="@+id/language_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/language"
+                    android:textSize="@dimen/font_size_sixteen"
+                    app:layout_constraintBottom_toBottomOf="@id/language_spinner"
+                    app:layout_constraintEnd_toStartOf="@id/language_spinner"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/language_spinner" />
+
+                <RadioGroup
+                    android:id="@+id/language_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dropdown"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/language_text"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <RadioButton
+                        android:id="@+id/english_radio_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/blue_700"
+                        android:drawableEnd="@drawable/ic_english"
+                        android:drawablePadding="@dimen/spacing_eight"
+                        android:text="@string/english_language" />
+
+                    <RadioButton
+                        android:id="@+id/romanian_radio_button"
+                        android:layout_width="match_parent"
+                        android:buttonTint="@color/blue_700"
+                        android:layout_height="wrap_content"
+                        android:drawableEnd="@drawable/ic_romanian"
+                        android:drawablePadding="@dimen/spacing_eight"
+                        android:text="@string/romanian_language" />
+
+                </RadioGroup>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
