@@ -1,19 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<MotionScene 
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:motion="http://schemas.android.com/apk/res-auto">
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <Transition
-        motion:constraintSetEnd="@+id/end"
-        motion:constraintSetStart="@id/start"
-        motion:duration="1000">
-       <KeyFrameSet>
-       </KeyFrameSet>
+        android:id="@+id/collapsingTransition"
+        app:constraintSetEnd="@id/collapsed"
+        app:constraintSetStart="@id/expanded">
+
+        <OnSwipe
+            app:dragDirection="dragUp"
+            app:touchAnchorId="@id/github_users_recycler_view"
+            app:touchAnchorSide="top" />
+
+        <KeyFrameSet>
+            <KeyAttribute
+                android:alpha="1.0"
+                app:framePosition="0"
+                app:motionTarget="@id/github_users_description_text" />
+
+            <KeyAttribute
+                android:alpha="0.0"
+                app:framePosition="60"
+                app:motionTarget="@id/github_users_description_text" />
+
+            <KeyAttribute
+                android:alpha="0.0"
+                app:framePosition="80"
+                app:motionTarget="@id/github_users_description_text" />
+            <KeyAttribute
+                android:alpha="0.0"
+                android:visibility="visible"
+                app:framePosition="100"
+                app:motionTarget="@id/github_users_description_text" />
+        </KeyFrameSet>
+
     </Transition>
 
-    <ConstraintSet android:id="@+id/start">
+    <ConstraintSet android:id="@+id/expanded">
+        <Constraint
+            android:id="@+id/welcome_title"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_twenty_four"
+            android:layout_marginTop="@dimen/spacing_thirty_two"
+            android:layout_marginEnd="@dimen/spacing_twenty_four"
+            android:fontFamily="@font/lato_black"
+            android:text="@string/welcome_message"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_twenty_four"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/github_users_description_text"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_twenty_four"
+            android:layout_marginTop="@dimen/spacing_eight"
+            android:layout_marginEnd="@dimen/spacing_twenty_four"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/github_users_list_description"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_sixteen"
+            app:layout_constraintBottom_toTopOf="@id/github_users_recycler_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/welcome_title" />
+
+        <Constraint
+            android:id="@+id/github_users_recycler_view"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="@dimen/match_constraint"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/top_separator" />
     </ConstraintSet>
 
-    <ConstraintSet android:id="@+id/end">
+    <ConstraintSet android:id="@+id/collapsed">
+        <Constraint
+            android:id="@+id/welcome_title"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_twenty_four"
+            android:layout_marginTop="@dimen/spacing_thirty_two"
+            android:layout_marginEnd="@dimen/spacing_twenty_four"
+            android:fontFamily="@font/lato_black"
+            android:text="@string/welcome_message"
+            android:textAlignment="center"
+            android:scaleY="0.8"
+            android:scaleX="0.8"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_twenty_four"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/github_users_description_text"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_twenty_four"
+            android:layout_marginTop="@dimen/spacing_eight"
+            android:layout_marginEnd="@dimen/spacing_twenty_four"
+            android:alpha="0.0"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/github_users_list_description"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_sixteen"
+            app:layout_constraintBottom_toTopOf="@id/github_users_recycler_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/welcome_title" />
+
+        <Constraint
+            android:id="@+id/top_separator"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/spacing_sixteen"
+            app:layout_constraintTop_toBottomOf="@+id/welcome_title" />
+
+        <Constraint
+            android:id="@+id/github_users_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/match_constraint"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/top_separator" />
     </ConstraintSet>
 </MotionScene>

@@ -7,5 +7,6 @@
 
     <string name="users">Users</string>
     <string name="settings">Settings</string>
-    <string name="github_users_list_description">Lists all users, in the order that they signed up on GitHub. This list includes personal user accounts and organization accounts.</string>
+    <string name="welcome_message">&#128075; Hi, welcome to Base Android Template!</string>
+    <string name="github_users_list_description">To prove server calls and Room database operations, we will display in this screen a list of 30 Github users fetched from the local database. If the database does not contain users, the list will be retrieved from the server and then saved in the local database.</string>
 </resources>

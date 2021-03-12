@@ -11,14 +11,16 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/spacing_twenty_four">
+        android:layout_height="match_parent">
 
         <androidx.cardview.widget.CardView
             android:layout_width="@dimen/match_constraint"
             android:layout_height="wrap_content"
             app:cardCornerRadius="8dp"
+            android:layout_marginStart="@dimen/spacing_twenty_four"
+            android:layout_marginEnd="@dimen/spacing_twenty_four"
             app:cardUseCompatPadding="true"
+            android:layout_marginTop="@dimen/spacing_thirty_two"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
