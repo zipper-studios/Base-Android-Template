@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Context.CONNECTIVITY_SERVICE
 import android.net.ConnectivityManager
 import com.base_android_template.shared.BASE_URL
+import com.base_android_template.shared.loading.UILoading
+import com.base_android_template.shared.loading.UILoadingImplementation
 import com.base_android_template.shared.network.ExceptionHandler
 import com.base_android_template.shared.network.NetworkHandler
 import com.base_android_template.shared.provider.PreferencesProvider
@@ -37,6 +39,8 @@ val coreModules = module {
     }
 
     factory<PreferencesProvider> { PreferencesProviderImpl() }
+
+    factory<UILoading> { UILoadingImplementation() }
 
     single { ExceptionHandler() }
 

@@ -18,6 +18,7 @@ class GithubUsersViewModel(
     }
 
     private fun getLocalCartItems() {
+        postLoading(true)
         viewModelScope.launch {
             getGithubUsersUseCase.getLocalGithubUsers().fold(
                 {
@@ -25,6 +26,7 @@ class GithubUsersViewModel(
                 },
                 {
                     githubUsersListAdapter.submitList(it)
+                    postLoading(false)
                 }
             )
         }
@@ -34,6 +36,7 @@ class GithubUsersViewModel(
         viewModelScope.launch {
             getGithubUsersUseCase.getRemoteAndSaveLocalGithubUsers().fold(
                 {
+                    postLoading(false)
                     Timber.d(
                         GithubUsersViewModel::class.simpleName,
                         "Error fetching Github users list"
@@ -41,6 +44,7 @@ class GithubUsersViewModel(
                 },
                 {
                     githubUsersListAdapter.submitList(it)
+                    postLoading(false)
                 }
             )
         }
