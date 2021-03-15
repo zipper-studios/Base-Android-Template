@@ -1,10 +1,13 @@
 package com.base_android_template.feature.github_users
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.base_android_template.base.BaseViewModel
 import com.base_android_template.usecase.GetGithubUsersUseCase
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import com.base_android_template.shared.network.Exception
 
 class GithubUsersViewModel(
     private val getGithubUsersUseCase: GetGithubUsersUseCase
@@ -12,6 +15,9 @@ class GithubUsersViewModel(
     BaseViewModel() {
 
     val githubUsersListAdapter = GithubUsersListAdapter()
+    val exception: LiveData<Exception> get() = _exception
+
+    private val _exception = MutableLiveData<Exception>()
 
     init {
         getLocalCartItems()
@@ -22,7 +28,7 @@ class GithubUsersViewModel(
         viewModelScope.launch {
             getGithubUsersUseCase.getLocalGithubUsers().fold(
                 {
-                    getRemoteGithubUsers()
+                   handleException(it)
                 },
                 {
                     githubUsersListAdapter.submitList(it)
@@ -32,15 +38,18 @@ class GithubUsersViewModel(
         }
     }
 
-    private fun getRemoteGithubUsers() {
+    private fun handleException(exception: Exception) {
+        Timber.d(exception.toString())
+        postLoading(false)
+        _exception.value = exception
+    }
+
+    fun getRemoteGithubUsers() {
         viewModelScope.launch {
             getGithubUsersUseCase.getRemoteAndSaveLocalGithubUsers().fold(
                 {
                     postLoading(false)
-                    Timber.d(
-                        GithubUsersViewModel::class.simpleName,
-                        "Error fetching Github users list"
-                    )
+                    handleException(it)
                 },
                 {
                     githubUsersListAdapter.submitList(it)

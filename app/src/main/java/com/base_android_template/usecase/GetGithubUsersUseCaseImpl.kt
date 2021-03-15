@@ -3,10 +3,10 @@ package com.base_android_template.usecase
 import com.base_android_template.model.entity.GithubUserEntity
 import com.base_android_template.persistance.dao.GithubUsersListDao
 import com.base_android_template.repository.GithubUsersRepository
+import com.base_android_template.shared.network.Exception
 import com.base_android_template.utils.Either
 import com.base_android_template.utils.doOnSuccess
 import com.base_android_template.utils.map
-import com.base_android_template.shared.network.Exception
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
@@ -35,7 +35,11 @@ class GetGithubUsersUseCaseImpl internal constructor(
     }
 
     private suspend fun updateLocalGithubUsersList(list: List<GithubUserEntity>) {
-        githubUsersListDao.insertGithubUsers(list)
+        try {
+            githubUsersListDao.insertGithubUsers(list)
+        } catch (e: kotlin.Exception) {
+            Either.Failure(Exception.SaveGithubUsersException)
+        }
     }
 
 }

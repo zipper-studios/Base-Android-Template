@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -46,6 +48,15 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel>(@LayoutRes
         }
     }
 
+    private val messageObserver = Observer<String> {
+        (activity as? AppCompatActivity)?.apply {
+            if (it.isNotEmpty()) {
+                Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+                viewModel.clearLastMessage()
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -69,6 +80,7 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel>(@LayoutRes
         viewModel.apply {
             navigationCommand.observe(viewLifecycleOwner, commandObserver)
             loading.observe(viewLifecycleOwner, loadingObserver)
+            message.observe(viewLifecycleOwner, messageObserver)
         }
     }
 
