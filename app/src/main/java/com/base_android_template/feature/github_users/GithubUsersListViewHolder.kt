@@ -8,7 +8,9 @@ class GithubUsersListViewHolder(private val binding: ItemGithubUserBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(githubUserItem: GithubUserEntity) {
-        binding.item = githubUserItem
-        binding.executePendingBindings()
+        binding.apply {
+            item = githubUserItem
+            executePendingBindings()
+        }
     }
 }

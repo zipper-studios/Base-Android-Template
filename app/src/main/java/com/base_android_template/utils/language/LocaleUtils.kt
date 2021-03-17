@@ -6,7 +6,7 @@ import android.content.res.Resources
 import android.view.ContextThemeWrapper
 import java.util.Locale
 
-/*
+/**
  * Utility class to change app locale settings.
  */
 

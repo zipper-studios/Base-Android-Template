@@ -10,8 +10,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 
-/*
- * Binding adapters are responsible for making the appropriate framework calls to set values for views directly inside layout.
+/**
+ * BindingAdapters class is responsible for making the appropriate framework calls to
+ * set values for views directly inside layout.
+ *
  */
 object BindingAdapters {
 
