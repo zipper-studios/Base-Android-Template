@@ -8,17 +8,16 @@ buildscript {
         constraint_layout = "2.0.4"
         junit = "1.1.2"
         espresso = "3.3.0"
-        navigationVersion = "2.3.3"
+        navigationVersion = "2.3.4"
         room_version = "2.2.6"
         calligraphy = "3.1.1"
         viewPump = "2.0.3"
         timber = "4.7.1"
         hawk = "2.0.1"
         glide = "4.11.0"
-        gson = "2.6.1"
-        okhttp = "3.11.0"
-        retrofit = "2.6.1"
-        koin = "2.0.1"
+        okhttp = "4.9.0"
+        retrofit = "2.7.2"
+        koin = "2.2.2"
     }
 
     repositories {
