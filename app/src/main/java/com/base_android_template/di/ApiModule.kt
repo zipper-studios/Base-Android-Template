@@ -7,9 +7,8 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 
 val apiModule = module {
-    fun provideUserApi(retrofit: Retrofit): GithubUsersApi {
-        return retrofit.create(GithubUsersApi::class.java)
-    }
+    fun provideUserApi(retrofit: Retrofit): GithubUsersApi =
+        retrofit.create(GithubUsersApi::class.java)
 
     single<GithubUsersListRemote> {
         GithubUsersListRemoteImpl(
