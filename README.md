@@ -7,7 +7,7 @@ If you want to start an Android project with a <b><i>clean architecture, reactiv
 
 To prove the mentioned concepts, the full-screen <b>Base-Android-Template</b> application contains a BotttomNavigationView with two sections:
 - <b>Github Users</b> is an interactive screen animated using the MotionLayout component. This screen displays a list of Github users fetched from the local Room database. If database does not contain users, the list will be retrieved from the server and then saved in Room. 
-- <b>Settings</b> is the screen where you can switch from Romanian and English languages. Here you can understand how simple and intuitive the Android Locale configurations can be changed.
+- <b>Settings</b> is the screen where you can switch languages between Romanian and English. Here you can understand how simple and intuitive the Android Locale configurations can be.
 
 ## Documentation
 
@@ -16,7 +16,7 @@ The code has been structured following the Clean Architecture approach and the M
 
 <h4>App bolierplate</h4>
 
-The main goal of this application is to avoid writing app basic boilerplate code, so the base classes for Fragment and ViewModel are already implemented:
+The main goal of this application is to avoid writing basic app boilerplate code, so the base classes for Fragment and ViewModel are already implemented:
 
 1. <b>BaseFragment</b> - receives the corresponding ViewDataBinding and ViewModel generic types and the id of the layout to be inflated. It avoids the boilerplate code because:
    - inflates the corresponding layout using DataBinding;
@@ -35,7 +35,7 @@ Dependency Injection is used on the app basically to make the components decoupl
 
 <h4>Reactive Programming</h4>
 
-Clean architecture makes you create different layers and, in order to avoid a callback hell, reactive programming paradigm is applied using [Coroutines](https://developer.android.com/kotlin/coroutines?gclid=Cj0KCQjwi7yCBhDJARIsAMWFScPxNPy-8e1PKDYuTjaNH5IQsqoGgT7P99aYP39EJdUJyYgQeypcIBIaAvmAEALw_wcB&gclsrc=aw.ds).
+To facilitate the communication between the clean architecture layers, reactive programming is applied using [Coroutines](https://developer.android.com/kotlin/coroutines?gclid=Cj0KCQjwi7yCBhDJARIsAMWFScPxNPy-8e1PKDYuTjaNH5IQsqoGgT7P99aYP39EJdUJyYgQeypcIBIaAvmAEALw_wcB&gclsrc=aw.ds).
 
 <h4>Libraries used</h4>
 
