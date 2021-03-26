@@ -13,7 +13,6 @@ val apiModule = module {
     single<GithubUsersListRemote> {
         GithubUsersListRemoteImpl(
             githubUsersListService = get(),
-            networkHandler = get(),
             exceptionHandler = get()
         )
     }

@@ -4,12 +4,10 @@ import com.base_android_template.model.response.GithubUserResponse
 import com.base_android_template.utils.Either
 import com.base_android_template.shared.network.Exception
 import com.base_android_template.shared.network.ExceptionHandler
-import com.base_android_template.shared.network.NetworkHandler
 import retrofit2.Response
 
 class GithubUsersListRemoteImpl(
     private val githubUsersListService: GithubUsersApi,
-    private val networkHandler: NetworkHandler,
     private val exceptionHandler: ExceptionHandler
 ) : GithubUsersListRemote {
 
@@ -18,9 +16,6 @@ class GithubUsersListRemoteImpl(
     }
 
     private suspend fun makeRequest(block: suspend () -> Response<List<GithubUserResponse>>): Either<Exception, List<GithubUserResponse>> {
-        if (!networkHandler.hasNetworkConnection()) {
-            return Either.Failure(Exception.NetworkException)
-        }
         return try {
             val response = block.invoke()
             handleResponse(response)
