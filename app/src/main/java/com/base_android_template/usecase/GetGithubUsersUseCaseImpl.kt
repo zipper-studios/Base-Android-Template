@@ -5,6 +5,7 @@ import com.base_android_template.persistance.dao.GithubUsersListDao
 import com.base_android_template.repository.GithubUsersRepository
 import com.base_android_template.utils.Either
 import com.base_android_template.utils.doOnSuccess
+import com.base_android_template.utils.extensions.mapToGithubUserEntity
 import com.base_android_template.utils.map
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
@@ -18,7 +19,7 @@ class GetGithubUsersUseCaseImpl internal constructor(
         coroutineScope {
             githubUsersRepository.getLocalGithubUsers()
                 .map { githubUsersList ->
-                    githubUsersList.map { GithubUserEntity.mapToGithubUserEntity(it) }
+                    githubUsersList.map { it.mapToGithubUserEntity() }
                 }
                 .doOnSuccess {
                     launch { updateLocalGithubUsersList(it) }

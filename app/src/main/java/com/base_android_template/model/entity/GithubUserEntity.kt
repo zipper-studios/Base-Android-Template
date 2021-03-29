@@ -3,7 +3,6 @@ package com.base_android_template.model.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
-import com.base_android_template.model.response.GithubUserResponse
 
 @Entity(
     primaryKeys = ["id"],
@@ -63,30 +62,4 @@ data class GithubUserEntity(
 
     @ColumnInfo(name = "site_admin")
     val siteAdmin: String = ""
-) {
-
-    companion object {
-
-        fun mapToGithubUserEntity(githubUserResponse: GithubUserResponse) =
-            GithubUserEntity(
-                login = githubUserResponse.login.orEmpty(),
-                id = githubUserResponse.id,
-                nodeId = githubUserResponse.nodeId.orEmpty(),
-                avatarUrl = githubUserResponse.avatarUrl.orEmpty(),
-                grAvatarId = githubUserResponse.grAvatarId.orEmpty(),
-                url = githubUserResponse.url.orEmpty(),
-                htmlUrl = githubUserResponse.htmlUrl.orEmpty(),
-                followersUrl = githubUserResponse.followersUrl.orEmpty(),
-                followingUrl = githubUserResponse.followingUrl.orEmpty(),
-                gistsUrl = githubUserResponse.gistsUrl.orEmpty(),
-                starredUrl = githubUserResponse.starredUrl.orEmpty(),
-                subscriptionsUrl = githubUserResponse.subscriptionsUrl.orEmpty(),
-                organizationsUrl = githubUserResponse.organizationsUrl.orEmpty(),
-                reposUrl = githubUserResponse.reposUrl.orEmpty(),
-                eventsUrl = githubUserResponse.eventsUrl.orEmpty(),
-                receivedEventsUrl = githubUserResponse.receivedEventsUrl.orEmpty(),
-                type = githubUserResponse.type.orEmpty(),
-                siteAdmin = githubUserResponse.siteAdmin.orEmpty()
-            )
-    }
-}
+)
