@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDirections
 import com.base_android_template.shared.model.NavigationCommand
+import com.base_android_template.utils.SingleLiveEvent
 
 /**
  * Represents the base class that will be extended by any ViewModel in the app.
@@ -14,16 +15,19 @@ import com.base_android_template.shared.model.NavigationCommand
  */
 open class BaseViewModel : ViewModel() {
 
-    val navigationCommand: LiveData<NavigationCommand?>
+    val navigationCommand: SingleLiveEvent<NavigationCommand?>
         get() = _navigationCommand
-    val loading: LiveData<Boolean>
+    val loading: SingleLiveEvent<Boolean>
         get() = _loading
-    val message: LiveData<String>
+    val message: SingleLiveEvent<String>
         get() = _message
+    val messageResId: SingleLiveEvent<Int>
+        get() = _messageResId
 
-    private val _navigationCommand = MutableLiveData<NavigationCommand?>()
-    private val _loading = MutableLiveData<Boolean>()
-    private val _message = MutableLiveData<String>()
+    private val _navigationCommand = SingleLiveEvent<NavigationCommand?>()
+    private val _loading = SingleLiveEvent<Boolean>()
+    private val _message = SingleLiveEvent<String>()
+    private val _messageResId = SingleLiveEvent<Int>()
 
     /**
      * Call this method when want to navigate between fragments via NavDirections
@@ -43,10 +47,6 @@ open class BaseViewModel : ViewModel() {
         _navigationCommand.postValue(NavigationCommand.PerformNavUp)
     }
 
-    fun clearLastNavigationCommand() {
-        _navigationCommand.value = null
-    }
-
     /**
      * Call this method when want to display a message in a Toast
      *
@@ -56,8 +56,13 @@ open class BaseViewModel : ViewModel() {
         _message.postValue(toDisplay)
     }
 
-    fun clearLastMessage() {
-        _message.value = ""
+    /**
+     * Call this method when want to display a message in a Toast
+     *
+     * @param id Int. The id of the string to be displayed
+     */
+    fun postMessageResId(id: Int) {
+        _messageResId.postValue(id)
     }
 
     /**

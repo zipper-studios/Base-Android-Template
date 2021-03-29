@@ -59,7 +59,6 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel>(@LayoutRes
                     findNavController().navigate(command.direction)
                 }
             }
-            viewModel.clearLastNavigationCommand()
         }
     }
 
@@ -71,7 +70,20 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel>(@LayoutRes
         (activity as? AppCompatActivity)?.apply {
             if (it.isNotEmpty()) {
                 Toast.makeText(this, it, Toast.LENGTH_LONG).show()
-                viewModel.clearLastMessage()
+            }
+        }
+    }
+
+    /**
+     * Receives the value from messageResId LiveData variable inside BaseViewModel
+     * and get the corresponding string to the id and displays the messages in a Toast
+     */
+    private val messageResIdObserver = Observer<Int> {
+        (activity as? AppCompatActivity)?.apply {
+            if (it != -1) {
+                if (getString(it) != "") {
+                    Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+                }
             }
         }
     }
@@ -104,6 +116,7 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel>(@LayoutRes
             navigationCommand.observe(viewLifecycleOwner, commandObserver)
             loading.observe(viewLifecycleOwner, loadingObserver)
             message.observe(viewLifecycleOwner, messageObserver)
+            messageResId.observe(viewLifecycleOwner, messageResIdObserver)
         }
     }
 

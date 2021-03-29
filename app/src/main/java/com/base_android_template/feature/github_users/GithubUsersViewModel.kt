@@ -1,13 +1,11 @@
 package com.base_android_template.feature.github_users
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.base_android_template.R
 import com.base_android_template.base.BaseViewModel
 import com.base_android_template.usecase.GetGithubUsersUseCase
 import com.base_android_template.usecase.GithubUsersError
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 class GithubUsersViewModel(
     private val getGithubUsersUseCase: GetGithubUsersUseCase
@@ -15,9 +13,6 @@ class GithubUsersViewModel(
     BaseViewModel() {
 
     val githubUsersListAdapter = GithubUsersListAdapter()
-    val githubUsersError: LiveData<GithubUsersError> get() = _githubUsersError
-
-    private val _githubUsersError = MutableLiveData<GithubUsersError>()
 
     init {
         getLocalCartItems()
@@ -38,7 +33,7 @@ class GithubUsersViewModel(
         }
     }
 
-    fun getRemoteGithubUsers() {
+    private fun getRemoteGithubUsers() {
         viewModelScope.launch {
             getGithubUsersUseCase.getRemoteAndSaveLocalGithubUsers().fold(
                 {
@@ -54,8 +49,18 @@ class GithubUsersViewModel(
     }
 
     private fun handleException(githubUsersError: GithubUsersError) {
-        Timber.d(this.githubUsersError.toString())
         postLoading(false)
-        _githubUsersError.value = githubUsersError
+        handleGithubUsersError(githubUsersError)
+    }
+
+    private fun handleGithubUsersError(githubUsersError: GithubUsersError) {
+        when (githubUsersError) {
+            is GithubUsersError.EmptyLocalGithubUsersListException -> {
+                getRemoteGithubUsers()
+            }
+            else -> {
+                postMessageResId(R.string.error_fetching_users_list)
+            }
+        }
     }
 }
