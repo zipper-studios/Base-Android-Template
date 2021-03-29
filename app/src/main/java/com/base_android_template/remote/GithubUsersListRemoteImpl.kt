@@ -4,6 +4,7 @@ import com.base_android_template.model.response.GithubUserResponse
 import com.base_android_template.usecase.GithubUsersError
 import com.base_android_template.utils.Either
 import retrofit2.Response
+import java.io.IOException
 
 class GithubUsersListRemoteImpl(
     private val githubUsersListService: GithubUsersApi
@@ -18,7 +19,7 @@ class GithubUsersListRemoteImpl(
         return try {
             val response = block.invoke()
             handleResponse(response)
-        } catch (exception: Throwable) {
+        } catch (exception: IOException) {
             Either.Failure(GithubUsersError.GeneralError)
         }
     }
