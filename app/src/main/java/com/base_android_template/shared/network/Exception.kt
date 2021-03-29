@@ -4,6 +4,6 @@ sealed class Exception {
     object NetworkException : Exception()
     object ServerException : Exception()
     object SaveGithubUsersException : Exception()
-    object EmptyLocalGithubUsersLisException : Exception()
+    object EmptyLocalGithubUsersListException : Exception()
     data class UnknownException(val exception: Throwable) : Exception()
 }

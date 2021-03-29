@@ -30,7 +30,7 @@ class GetGithubUsersUseCaseImpl internal constructor(
         val list = githubUsersListDao.getGithubUsers()
 
         return if (list?.isNullOrEmpty() == true)
-            Either.Failure(Exception.EmptyLocalGithubUsersLisException)
+            Either.Failure(Exception.EmptyLocalGithubUsersListException)
         else Either.Success(list)
     }
 

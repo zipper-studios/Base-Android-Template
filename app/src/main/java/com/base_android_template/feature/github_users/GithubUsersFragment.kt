@@ -17,7 +17,7 @@ class GithubUsersFragment :
 
         viewModel.exception.observe(viewLifecycleOwner, {
             when (it) {
-                is Exception.EmptyLocalGithubUsersLisException -> {
+                is Exception.EmptyLocalGithubUsersListException -> {
                     viewModel.getRemoteGithubUsers()
                 }
                 else -> {
