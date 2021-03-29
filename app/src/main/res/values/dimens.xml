@@ -6,8 +6,10 @@
     <!-- Spacing -->
     <dimen name="spacing_eight">8dp</dimen>
     <dimen name="spacing_sixteen">16dp</dimen>
+    <dimen name="spacing_twenty_four">24dp</dimen>
+    <dimen name="spacing_thirty_two">32dp</dimen>
 
     <!-- Font sizes -->
-    <dimen name="font_size_fourteen">14sp</dimen>
     <dimen name="font_size_sixteen">16sp</dimen>
+    <dimen name="font_size_twenty_four">24sp</dimen>
 </resources>

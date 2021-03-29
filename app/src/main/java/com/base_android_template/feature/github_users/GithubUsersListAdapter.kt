@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.base_android_template.databinding.ItemGithubUserBinding
-import com.base_android_template.model.response.GithubUserResponse
+import com.base_android_template.model.entity.GithubUserEntity
 
 class GithubUsersListAdapter :
-    ListAdapter<GithubUserResponse, GithubUsersListViewHolder>(GithubUsersCallback()) {
+    ListAdapter<GithubUserEntity, GithubUsersListViewHolder>(GithubUsersCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GithubUsersListViewHolder {
         val inflater = LayoutInflater.from(parent.context)

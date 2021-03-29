@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -8,35 +10,80 @@
             type="com.base_android_template.feature.github_users.GithubUsersViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/fragment_github_users_motion_scene">
 
         <TextView
+            android:id="@+id/welcome_title"
             android:layout_width="@dimen/match_constraint"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_twenty_four"
+            android:layout_marginTop="@dimen/spacing_thirty_two"
+            android:layout_marginEnd="@dimen/spacing_twenty_four"
+            android:fontFamily="@font/lato_black"
+            android:text="@string/welcome_message"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_twenty_four"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/github_users_description_text"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_twenty_four"
+            android:layout_marginTop="@dimen/spacing_eight"
+            android:layout_marginEnd="@dimen/spacing_twenty_four"
+            android:fontFamily="@font/lato_regular"
             android:text="@string/github_users_list_description"
+            android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="@dimen/font_size_sixteen"
-            android:fontFamily="@font/lato_regular"
-            android:padding="@dimen/spacing_sixteen"
+            app:layout_constraintBottom_toTopOf="@id/github_users_recycler_view"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/welcome_title" />
+
+        <View
+            android:id="@+id/top_separator"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/spacing_twenty_four"
+            android:background="@color/light_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/github_users_description_text" />
+
+        <View
+            android:id="@+id/top_shadow"
+            android:layout_width="@dimen/match_constraint"
+            android:layout_height="@dimen/spacing_eight"
+            android:background="@drawable/bg_shadow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/top_separator" />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/github_users_recycler_view"
             android:layout_width="@dimen/match_constraint"
             android:layout_height="@dimen/match_constraint"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="@dimen/spacing_eight"
+            android:layout_marginEnd="@dimen/spacing_eight"
             android:clipToPadding="false"
             android:paddingBottom="@dimen/spacing_sixteen"
-            app:layout_constraintEnd_toEndOf="parent"
             app:adapter="@{viewModel.githubUsersListAdapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/github_users_description_text" />
+            app:layout_constraintTop_toBottomOf="@+id/top_separator"
+            tools:listitem="@layout/item_github_user" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

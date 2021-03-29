@@ -1,17 +1,17 @@
 package com.base_android_template.feature.github_users
 
 import androidx.recyclerview.widget.DiffUtil
-import com.base_android_template.model.response.GithubUserResponse
+import com.base_android_template.model.entity.GithubUserEntity
 
-class GithubUsersCallback : DiffUtil.ItemCallback<GithubUserResponse>() {
+class GithubUsersCallback : DiffUtil.ItemCallback<GithubUserEntity>() {
     override fun areItemsTheSame(
-        oldItem: GithubUserResponse,
-        newItem: GithubUserResponse
+        oldItem: GithubUserEntity,
+        newItem: GithubUserEntity
     ): Boolean = oldItem.id == newItem.id
 
     override fun areContentsTheSame(
-        oldItem: GithubUserResponse,
-        newItem: GithubUserResponse
+        oldItem: GithubUserEntity,
+        newItem: GithubUserEntity
     ): Boolean = oldItem == newItem
 
 }

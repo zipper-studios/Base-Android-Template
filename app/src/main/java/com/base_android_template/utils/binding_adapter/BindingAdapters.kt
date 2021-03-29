@@ -1,6 +1,7 @@
 package com.base_android_template.utils.binding_adapter
 
 import android.widget.ImageView
+import android.widget.RadioGroup
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -9,8 +10,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 
-/*
- * Binding adapters are responsible for making the appropriate framework calls to set values for views directly inside layout.
+/**
+ * BindingAdapters class is responsible for making the appropriate framework calls to
+ * set values for views directly inside layout.
+ *
  */
 object BindingAdapters {
 
@@ -50,5 +53,22 @@ object BindingAdapters {
             .load(imageUrl ?: "")
             .apply(options)
             .into(imageView)
+    }
+
+    /**
+     * Set the RadioGroup.OnCheckedChangeListener on RadioGroup view
+     *
+     * @param radioGroup RadioGroup. The RadioGroup to which the OnCheckedChangeListener
+     * will be attached
+     * @param listener RadioGroup.OnCheckedChangeListener. The listener that will be
+     * invoked when the checked radio button changed in this group
+     */
+    @BindingAdapter("app:setRadioGroupListener")
+    @JvmStatic
+    fun setRadioGroupListener(
+        radioGroup: RadioGroup,
+        listener: RadioGroup.OnCheckedChangeListener
+    ) {
+        radioGroup.setOnCheckedChangeListener(listener)
     }
 }

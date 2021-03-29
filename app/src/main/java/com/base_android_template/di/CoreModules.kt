@@ -1,9 +1,10 @@
 package com.base_android_template.di
 
 import com.base_android_template.shared.BASE_URL
+import com.base_android_template.shared.loading.UILoading
+import com.base_android_template.shared.loading.UILoadingImplementation
 import com.base_android_template.shared.provider.PreferencesProvider
 import com.base_android_template.shared.provider.PreferencesProviderImpl
-import com.base_android_template.utils.network.NetworkResponseAdapterFactory
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
@@ -27,13 +28,15 @@ val coreModules = module {
     factory {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .addCallAdapterFactory(NetworkResponseAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create(get()))
             .client(get())
             .build()
     }
 
     factory<PreferencesProvider> { PreferencesProviderImpl() }
+
+    factory<UILoading> { UILoadingImplementation() }
 }
 
-fun createCoreModules() = coreModules + apiModule + repositoryModule + useCaseModule
+fun createCoreModules() =
+    coreModules + apiModule + repositoryModule + useCaseModule + databaseModule

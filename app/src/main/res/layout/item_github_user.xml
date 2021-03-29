@@ -6,7 +6,7 @@
 
         <variable
             name="item"
-            type="com.base_android_template.model.response.GithubUserResponse" />
+            type="com.base_android_template.model.entity.GithubUserEntity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -39,16 +39,16 @@
                     android:id="@+id/github_user_name"
                     android:layout_width="@dimen/match_constraint"
                     android:layout_height="wrap_content"
-                    android:text="@{item.login}"
-                    android:padding="@dimen/spacing_sixteen"
                     android:fontFamily="@font/lato_regular"
-                    android:textSize="@dimen/font_size_sixteen"
+                    android:padding="@dimen/spacing_sixteen"
+                    android:text="@{item.login}"
                     android:textColor="@color/black"
-                    tools:text="Github User"
-                    app:layout_constraintStart_toEndOf="@id/github_user_avatar"
+                    android:textSize="@dimen/font_size_sixteen"
+                    app:layout_constraintBottom_toBottomOf="@+id/github_user_avatar"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/github_user_avatar"
                     app:layout_constraintTop_toTopOf="@+id/github_user_avatar"
-                    app:layout_constraintBottom_toBottomOf="@+id/github_user_avatar"/>
+                    tools:text="Github User" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

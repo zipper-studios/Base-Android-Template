@@ -9,5 +9,4 @@ class GithubUsersFragment :
     BaseFragment<FragmentGithubUsersBinding, GithubUsersViewModel>(R.layout.fragment_github_users) {
 
     override val viewModel: GithubUsersViewModel by viewModel()
-
 }

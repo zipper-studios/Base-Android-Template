@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/githubUsers"
+        android:icon="@drawable/ic_account_circle_24px"
+        android:title="@string/users" />
+
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/ic_settings_24px"
+        android:title="@string/settings" />
+
+</menu>
+
