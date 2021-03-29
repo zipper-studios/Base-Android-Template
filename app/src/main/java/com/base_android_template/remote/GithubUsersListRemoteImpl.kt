@@ -1,34 +1,33 @@
 package com.base_android_template.remote
 
 import com.base_android_template.model.response.GithubUserResponse
+import com.base_android_template.usecase.GithubUsersError
 import com.base_android_template.utils.Either
-import com.base_android_template.shared.network.Exception
-import com.base_android_template.shared.network.ExceptionHandler
 import retrofit2.Response
 
 class GithubUsersListRemoteImpl(
-    private val githubUsersListService: GithubUsersApi,
-    private val exceptionHandler: ExceptionHandler
+    private val githubUsersListService: GithubUsersApi
 ) : GithubUsersListRemote {
 
-    override suspend fun getGithubUsersList(): Either<Exception, List<GithubUserResponse>> = makeRequest {
-        githubUsersListService.getGithubUsers()
-    }
+    override suspend fun getGithubUsersList(): Either<GithubUsersError, List<GithubUserResponse>> =
+        makeRequest {
+            githubUsersListService.getGithubUsers()
+        }
 
-    private suspend fun makeRequest(block: suspend () -> Response<List<GithubUserResponse>>): Either<Exception, List<GithubUserResponse>> {
+    private suspend fun makeRequest(block: suspend () -> Response<List<GithubUserResponse>>): Either<GithubUsersError, List<GithubUserResponse>> {
         return try {
             val response = block.invoke()
             handleResponse(response)
         } catch (exception: Throwable) {
-            exceptionHandler.handleGeneralException(exception)
+            Either.Failure(GithubUsersError.GeneralError)
         }
     }
 
-    private fun handleResponse(response: Response<List<GithubUserResponse>>): Either<Exception, List<GithubUserResponse>> {
+    private fun handleResponse(response: Response<List<GithubUserResponse>>): Either<GithubUsersError, List<GithubUserResponse>> {
         return if (response.isSuccessful) {
             handleSuccess(response)
         } else {
-            Either.Failure(Exception.ServerException)
+            Either.Failure(GithubUsersError.GeneralError)
         }
     }
 

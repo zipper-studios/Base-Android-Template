@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.base_android_template.base.BaseViewModel
-import com.base_android_template.shared.network.Exception
 import com.base_android_template.usecase.GetGithubUsersUseCase
+import com.base_android_template.usecase.GithubUsersError
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -15,9 +15,9 @@ class GithubUsersViewModel(
     BaseViewModel() {
 
     val githubUsersListAdapter = GithubUsersListAdapter()
-    val exception: LiveData<Exception> get() = _exception
+    val githubUsersError: LiveData<GithubUsersError> get() = _githubUsersError
 
-    private val _exception = MutableLiveData<Exception>()
+    private val _githubUsersError = MutableLiveData<GithubUsersError>()
 
     init {
         getLocalCartItems()
@@ -53,9 +53,9 @@ class GithubUsersViewModel(
         }
     }
 
-    private fun handleException(exception: Exception) {
-        Timber.d(exception.toString())
+    private fun handleException(githubUsersError: GithubUsersError) {
+        Timber.d(this.githubUsersError.toString())
         postLoading(false)
-        _exception.value = exception
+        _githubUsersError.value = githubUsersError
     }
 }

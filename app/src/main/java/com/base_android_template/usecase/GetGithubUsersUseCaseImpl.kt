@@ -3,7 +3,6 @@ package com.base_android_template.usecase
 import com.base_android_template.model.entity.GithubUserEntity
 import com.base_android_template.persistance.dao.GithubUsersListDao
 import com.base_android_template.repository.GithubUsersRepository
-import com.base_android_template.shared.network.Exception
 import com.base_android_template.utils.Either
 import com.base_android_template.utils.doOnSuccess
 import com.base_android_template.utils.map
@@ -15,7 +14,7 @@ class GetGithubUsersUseCaseImpl internal constructor(
     private val githubUsersListDao: GithubUsersListDao
 ) : GetGithubUsersUseCase {
 
-    override suspend fun getRemoteAndSaveLocalGithubUsers(): Either<Exception, List<GithubUserEntity>> =
+    override suspend fun getRemoteAndSaveLocalGithubUsers(): Either<GithubUsersError, List<GithubUserEntity>> =
         coroutineScope {
             githubUsersRepository.getLocalGithubUsers()
                 .map { githubUsersList ->
@@ -26,20 +25,16 @@ class GetGithubUsersUseCaseImpl internal constructor(
                 }
         }
 
-    override suspend fun getLocalGithubUsers(): Either<Exception, List<GithubUserEntity>> {
+    override suspend fun getLocalGithubUsers(): Either<GithubUsersError, List<GithubUserEntity>> {
         val list = githubUsersListDao.getGithubUsers()
 
         return if (list?.isNullOrEmpty() == true)
-            Either.Failure(Exception.EmptyLocalGithubUsersListException)
+            Either.Failure(GithubUsersError.EmptyLocalGithubUsersListException)
         else Either.Success(list)
     }
 
     private suspend fun updateLocalGithubUsersList(list: List<GithubUserEntity>) {
-        try {
-            githubUsersListDao.insertGithubUsers(list)
-        } catch (e: kotlin.Exception) {
-            Either.Failure(Exception.SaveGithubUsersException)
-        }
+        githubUsersListDao.insertGithubUsers(list)
     }
 
 }
